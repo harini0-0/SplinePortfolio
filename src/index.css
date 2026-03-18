@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-neu-bg text-gray-700 font-sans; }
+  .dark body { @apply bg-neu-dark text-gray-200; }
+}
+
+@layer components {
+  .neu-card {
+    @apply bg-neu-bg rounded-2xl shadow-neu-flat p-6;
+  }
+  .dark .neu-card {
+    @apply bg-neu-dark shadow-neu-flat-dark;
+  }
+
+  .neu-pill {
+    @apply bg-neu-bg rounded-full shadow-neu-pressed px-4 py-1 text-sm font-medium;
+  }
+  .dark .neu-pill {
+    @apply bg-neu-dark shadow-neu-pressed-dark;
+  }
+
+  .neu-btn {
+    @apply bg-neu-bg rounded-xl shadow-neu-raised px-5 py-2 font-medium text-sm
+           transition-all duration-150 active:shadow-neu-pressed
+           hover:scale-[1.02] cursor-pointer;
+  }
+  .dark .neu-btn {
+    @apply bg-neu-dark shadow-neu-raised-dark active:shadow-neu-pressed-dark;
+  }
+}
