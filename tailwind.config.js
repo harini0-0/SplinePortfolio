@@ -17,7 +17,7 @@ export default {
         neu: { bg: '#f0f0f3', dark: '#141418' },
       },
       fontFamily: {
-        comic: ['Bangers', 'cursive'],
+        comic: ['Space Grotesk', 'sans-serif'],
         sans:  ['Inter', 'sans-serif'],
       },
       boxShadow: {
@@ -30,7 +30,7 @@ export default {
         'card-lifted': '0 16px 40px rgba(0,0,0,0.16)',
       },
       letterSpacing: {
-        comic: '0.06em',
+        comic: '0.04em',
       },
       keyframes: {
         shimmer: {

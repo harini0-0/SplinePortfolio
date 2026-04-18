@@ -42,9 +42,6 @@ export default function App() {
       <Hero />
       <About />
 
-      {/* ── Scene transition ── */}
-      <PanelGutter from="#080400" to="#0f0400" />
-
       {/* Experience — horizontal speed lines, reddish-dark */}
       <Experience />
 

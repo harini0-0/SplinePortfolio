@@ -17,16 +17,17 @@ export const stats = [
 ];
 
 export const about = {
-  bio: `I'm a software engineer who spent 2.5 years at Wells Fargo designing and shipping 
-        production backend systems, CI/CD pipelines, and AI-powered developer tooling — 
-        the kind of work where reliability isn't optional. I refactored monolithic lending 
-        platforms into microservices, built a VS Code extension that surfaces business logic 
-        in-IDE using LangGraph and GitHub Copilot API, and kept production stable through 
-        20+ deployments with 99% SLA compliance. I'm now pursuing my MS in Computer Science 
-        at Northeastern University, deepening my foundation in software design, distributed 
-        systems, and applied ML. I pick up things on my own timeline — Flutter and Dart 
-        weren't part of any job requirement, I just wanted to understand a different paradigm 
+  bio: `I'm a software engineer who spent 2.5 years at Wells Fargo designing and shipping
+        production backend systems, CI/CD pipelines, and AI-powered developer tooling —
+        the kind of work where reliability isn't optional. I refactored monolithic lending
+        platforms into microservices, built a VS Code extension that surfaces business logic
+        in-IDE using LangGraph and GitHub Copilot API, and kept production stable through
+        20+ deployments with 99% SLA compliance. I'm now pursuing my MS in Computer Science
+        at Northeastern University, deepening my foundation in software design, distributed
+        systems, and applied ML. I pick up things on my own timeline — Flutter and Dart
+        weren't part of any job requirement, I just wanted to understand a different paradigm
         and built with it until I did. That's how I approach gaps.`,
+  shortBio: `Software engineer with 2.5 years at Wells Fargo shipping production backend systems, AI tooling, and CI/CD pipelines. Currently pursuing MS CS at Northeastern — building at the intersection of distributed systems and applied ML.`,
   highlights: [
     '2.5 years at Wells Fargo — Senior SWE',
     'MS CS — Northeastern University (Jan 2026)',

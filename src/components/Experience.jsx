@@ -15,6 +15,10 @@ export default function Experience() {
 
       <div className="pointer-events-none absolute inset-0 scene-experience" />
       <div className="pointer-events-none absolute inset-0 halftone opacity-20" />
+      {/* Top gradient — receives About's bottom green-to-reddish bridge */}
+      <div className="pointer-events-none absolute top-0 left-0 right-0"
+           style={{ height: 120, zIndex: 2,
+                    background: 'linear-gradient(to bottom, #0f0400, rgba(15,4,0,0))' }} />
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
