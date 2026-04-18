@@ -1,35 +1,400 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@300;400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────
+   BASE — Comic Book Dark Mode Only
+───────────────────────────────────────── */
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply bg-neu-bg text-gray-700 font-sans; }
-  .dark body { @apply bg-neu-dark text-gray-200; }
+
+  body {
+    background-color: #080400;
+    color: #f5ede0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.05em;
+  }
 }
 
+/* ─────────────────────────────────────────
+   HALFTONE TEXTURES
+───────────────────────────────────────── */
+@layer utilities {
+  .halftone {
+    background-image: radial-gradient(circle, rgba(255,101,0,0.13) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  .halftone-yellow {
+    background-image: radial-gradient(circle, rgba(255,214,0,0.1) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+
+  .halftone-blue {
+    background-image: radial-gradient(circle, rgba(80,140,255,0.09) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+
+  .action-lines {
+    background-image: repeating-conic-gradient(
+      from 0deg at 70% 50%,
+      rgba(255,101,0,0.045) 0deg 4deg,
+      transparent 4deg 8deg
+    );
+  }
+
+  /* ── Per-section scene backgrounds ── */
+
+  /* Experience — horizontal speed lines, dark red-orange */
+  .scene-experience {
+    background:
+      repeating-linear-gradient(
+        90deg,
+        rgba(255,80,0,0.06) 0px, rgba(255,80,0,0.06) 1px,
+        transparent 1px, transparent 30px
+      ),
+      radial-gradient(ellipse at 0% 50%, rgba(255,80,0,0.10) 0%, transparent 55%),
+      #0f0400;
+  }
+
+  /* Projects — radial burst from right, deep dark */
+  .scene-projects {
+    background:
+      repeating-conic-gradient(
+        from 0deg at 68% 50%,
+        rgba(255,101,0,0.055) 0deg 3.5deg,
+        transparent 3.5deg 7deg
+      ),
+      radial-gradient(ellipse at 68% 50%, rgba(255,101,0,0.09) 0%, transparent 60%),
+      #080300;
+  }
+
+  /* TechStack — diagonal yellow speed lines */
+  .scene-techstack {
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255,214,0,0.05) 0px, rgba(255,214,0,0.05) 1px,
+        transparent 1px, transparent 26px
+      ),
+      radial-gradient(ellipse at 30% 60%, rgba(255,180,0,0.08) 0%, transparent 55%),
+      #130700;
+  }
+
+  /* Chat — vertical lines, slightly blue-tinted for contrast */
+  .scene-chat {
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(70,130,255,0.05) 0px, rgba(70,130,255,0.05) 1px,
+        transparent 1px, transparent 22px
+      ),
+      radial-gradient(ellipse at 50% 30%, rgba(60,110,255,0.07) 0%, transparent 55%),
+      #07080f;
+  }
+
+  /* Contact — radial burst from left, warm red */
+  .scene-contact {
+    background:
+      repeating-conic-gradient(
+        from 0deg at 30% 50%,
+        rgba(230,50,0,0.05) 0deg 4deg,
+        transparent 4deg 8deg
+      ),
+      radial-gradient(ellipse at 30% 50%, rgba(230,60,0,0.09) 0%, transparent 55%),
+      #110400;
+  }
+
+  /* Footer — near black, faint halftone */
+  .scene-footer {
+    background: #050200;
+  }
+}
+
+/* ─────────────────────────────────────────
+   COMIC PANELS
+───────────────────────────────────────── */
 @layer components {
-  .neu-card {
-    @apply bg-neu-bg rounded-2xl shadow-neu-flat p-6;
-  }
-  .dark .neu-card {
-    @apply bg-neu-dark shadow-neu-flat-dark;
+
+  /* Core panel */
+  .panel {
+    background-color: #120700;
+    border: 3px solid #ff6500;
+    box-shadow: 5px 5px 0px #ff6500;
+    border-radius: 4px;
   }
 
-  .neu-pill {
-    @apply bg-neu-bg rounded-full shadow-neu-pressed px-4 py-1 text-sm font-medium;
-  }
-  .dark .neu-pill {
-    @apply bg-neu-dark shadow-neu-pressed-dark;
+  .panel-yellow {
+    background-color: #120700;
+    border: 3px solid #ffd600;
+    box-shadow: 5px 5px 0px #ffd600;
+    border-radius: 4px;
   }
 
-  .neu-btn {
-    @apply bg-neu-bg rounded-xl shadow-neu-raised px-5 py-2 font-medium text-sm
-           transition-all duration-150 active:shadow-neu-pressed
-           hover:scale-[1.02] cursor-pointer;
+  .panel-interactive {
+    background-color: #120700;
+    border: 3px solid #ff6500;
+    box-shadow: 5px 5px 0px #ff6500;
+    border-radius: 4px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
   }
-  .dark .neu-btn {
-    @apply bg-neu-dark shadow-neu-raised-dark active:shadow-neu-pressed-dark;
+
+  .panel-interactive:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px #ff6500;
   }
+
+  /* ── Speech Bubbles ── */
+  /* AI/left-side bubble — tail bottom-left */
+  .bubble-ai {
+    position: relative;
+    background-color: #1a0900;
+    border: 3px solid #f5ede0;
+    border-radius: 18px 18px 18px 4px;
+    color: #f5ede0;
+  }
+  .bubble-ai::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 18px;
+    border-style: solid;
+    border-width: 20px 14px 0 0;
+    border-color: #f5ede0 transparent transparent transparent;
+  }
+
+  /* User/right-side bubble — tail bottom-right */
+  .bubble-user {
+    position: relative;
+    background-color: #2a0e00;
+    border: 3px solid #ff6500;
+    border-radius: 18px 18px 4px 18px;
+    color: #f5ede0;
+  }
+  .bubble-user::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 18px;
+    border-style: solid;
+    border-width: 20px 0 0 14px;
+    border-color: #ff6500 transparent transparent transparent;
+  }
+
+  /* Loading bubble dots */
+  .bubble-loading {
+    position: relative;
+    background-color: #1a0900;
+    border: 3px solid #f5ede0;
+    border-radius: 18px 18px 18px 4px;
+  }
+  .bubble-loading::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 18px;
+    border-style: solid;
+    border-width: 20px 14px 0 0;
+    border-color: #f5ede0 transparent transparent transparent;
+  }
+
+  /* ── Comic Tags / Pills ── */
+  .comic-tag {
+    background-color: #ff6500;
+    color: #000;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-block;
+  }
+
+  .comic-tag-outline {
+    border: 2px solid #ff6500;
+    color: #ff6500;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-block;
+  }
+
+  .comic-tag-yellow {
+    background-color: #ffd600;
+    color: #000;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: inline-block;
+  }
+
+  /* ── Buttons ── */
+  .btn-comic {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.06em;
+    font-size: 16px;
+    padding: 10px 28px;
+    background-color: #ff6500;
+    color: #000;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    border-radius: 4px;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-comic:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+  }
+  .btn-comic:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .btn-comic-outline {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.06em;
+    font-size: 16px;
+    padding: 8px 24px;
+    background-color: transparent;
+    color: #ff6500;
+    border: 3px solid #ff6500;
+    box-shadow: 4px 4px 0px #ff6500;
+    border-radius: 4px;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-comic-outline:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #ff6500;
+    background-color: rgba(255,101,0,0.08);
+  }
+
+  .btn-icon-comic {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #ff6500;
+    color: #ff6500;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.12s ease;
+    cursor: pointer;
+  }
+  .btn-icon-comic:hover {
+    background-color: #ff6500;
+    color: #000;
+    transform: translate(-2px,-2px);
+    box-shadow: 3px 3px 0 #000;
+  }
+
+  /* ── Form Fields ── */
+  .field-comic {
+    width: 100%;
+    background-color: #1a0900;
+    border: 3px solid #ff6500;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #f5ede0;
+    outline: none;
+    transition: box-shadow 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .field-comic::placeholder {
+    color: rgba(245,237,224,0.35);
+  }
+  .field-comic:focus {
+    box-shadow: 4px 4px 0 #ff6500;
+  }
+
+  /* ── Section Typography ── */
+  .section-heading {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    letter-spacing: 0.06em;
+    color: #ff6500;
+    line-height: 1;
+  }
+
+  .section-subheading {
+    color: rgba(245,237,224,0.6);
+    font-size: 15px;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* ── Panel number badge ── */
+  .panel-number {
+    width: 40px;
+    height: 40px;
+    background: #ff6500;
+    color: #000;
+    font-family: 'Bangers', cursive;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 #000;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── Starburst decoration ── */
+  .starburst {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffd600;
+    color: #000;
+    font-family: 'Bangers', cursive;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 8px 12px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  /* ── Legacy aliases ── */
+  .card           { @apply panel; }
+  .card-hover     { @apply panel-interactive; }
+  .glass          { @apply panel; }
+  .glass-card     { @apply panel; }
+  .glass-strong   { @apply panel; }
+  .neu-card       { @apply panel; }
+  .neu-btn        { @apply btn-comic-outline text-sm; }
+  .neu-pill       { @apply comic-tag-outline; }
+  .neu-input      { @apply field-comic; }
+  .tag            { @apply comic-tag-outline; }
+  .tag-accent     { @apply comic-tag; }
+  .tag-amber      { @apply comic-tag-yellow; }
+  .tag-violet     { @apply comic-tag-outline; }
+  .btn-primary    { @apply btn-comic; }
+  .btn-ghost      { @apply btn-comic-outline; }
+  .btn-icon       { @apply btn-icon-comic; }
+  .field          { @apply field-comic; }
+  .accent-underline { @apply relative; }
+  .amber-glow     {}
+  .glass-nav      { background: rgba(8,4,0,0.92); border-bottom: 3px solid #ff6500; backdrop-filter: blur(8px); }
 }
