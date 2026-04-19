@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 const COUNT = 60;
-const COLORS = ['#4ade80', '#22c55e', '#86efac', '#a3e635', '#bbf7d0'];
+const COLORS = ['#4F9B93', '#3E6F85', '#7EC8C0', '#5AACB0', '#82C4C0'];
 const REPEL_RADIUS = 120;
 const REPEL_FORCE  = 3;
 

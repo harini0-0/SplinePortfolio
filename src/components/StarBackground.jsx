@@ -50,10 +50,10 @@ export default function StarBackground() {
         gl={{ antialias: true, powerPreference: 'high-performance' }}
         dpr={[1, 1.5]}
       >
-        {/* Cream-white dense layer */}
-        <StarsLayer count={3500} radius={1.4} color="#f5ede0" size={0.0018} />
-        {/* Yellow accent sparse layer — matches comic yellow */}
-        <StarsLayer count={500} radius={1.4} color="#ffd600" size={0.0026} />
+        {/* Light blue-white dense layer */}
+        <StarsLayer count={3500} radius={1.4} color="#E0EDF4" size={0.0018} />
+        {/* Teal accent sparse layer */}
+        <StarsLayer count={500} radius={1.4} color="#4F9B93" size={0.0026} />
       </Canvas>
     </div>
   );

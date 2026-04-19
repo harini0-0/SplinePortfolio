@@ -3,10 +3,10 @@ import { about } from '../data/resume';
 import ForestFireflies from './ForestFireflies';
 
 const G = {
-  accent:  '#22c55e',
-  light:   '#4ade80',
-  text:    '#d1fae5',
-  textDim: 'rgba(209,250,233,0.6)',
+  accent:  '#4F9B93',
+  light:   '#7EC8C0',
+  text:    '#E0EDF4',
+  textDim: 'rgba(224,237,244,0.6)',
 };
 
 const fadeUp = (delay = 0) => ({
@@ -39,7 +39,7 @@ export default function About() {
       {/* Dark overlay for text legibility */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1,
-        background: 'rgba(2,8,4,0.62)',
+        background: 'rgba(12,23,35,0.65)',
       }} />
 
       {/* Fireflies canvas */}
@@ -58,7 +58,7 @@ export default function About() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             border: '2px solid #000', boxShadow: '3px 3px 0 #000',
             borderRadius: 4, flexShrink: 0,
-          }}>★</div>
+          }}>AB</div>
           <div>
             <h2 style={{
               fontFamily: "'Space Grotesk', sans-serif",
@@ -76,100 +76,49 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* ── Content grid ── */}
-        <div className="grid lg:grid-cols-5 gap-8 items-start">
+        {/* ── Content ── */}
+        <div className="max-w-3xl flex flex-col gap-8">
 
-          {/* Left — bio + highlights */}
-          <div className="lg:col-span-3 flex flex-col gap-6">
-
-            <motion.div {...fadeUp(0.1)}>
-              <div style={{
-                background: 'rgba(2,10,4,0.75)',
-                border: `1.5px solid rgba(34,197,94,0.35)`,
-                borderRadius: 12,
-                padding: '24px 28px',
-                backdropFilter: 'blur(6px)',
-                boxShadow: '0 0 28px rgba(34,197,94,0.06)',
-              }}>
-                <div style={{ width: 36, height: 3, background: G.accent,
-                              borderRadius: 2, marginBottom: 14 }} />
-                <p style={{ color: G.text, fontSize: 15, lineHeight: 1.75, opacity: 0.9 }}>
-                  {about.shortBio}
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div {...fadeUp(0.18)} className="flex flex-wrap gap-2">
-              {about.highlights.map((h, i) => (
-                <span key={i} style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 600, fontSize: 11,
-                  padding: '3px 12px', borderRadius: 3,
-                  textTransform: 'uppercase', letterSpacing: '0.05em',
-                  backdropFilter: 'blur(4px)',
-                  ...(i % 2 === 0
-                    ? { background: G.accent, color: '#000' }
-                    : { border: `1.5px solid rgba(34,197,94,0.6)`, color: G.accent, background: 'rgba(34,197,94,0.07)' }
-                  ),
-                }}>
-                  {h}
-                </span>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Right — stats + awards */}
-          <motion.div {...fadeUp(0.22)} className="lg:col-span-2 flex flex-col gap-4">
-
-            {[
-              { value: '2.5+', label: 'Years at Wells Fargo' },
-              { value: '99%',  label: 'SLA Compliance'       },
-              { value: '20+',  label: 'Prod Deployments'     },
-            ].map((s, i) => (
-              <div key={i} style={{
-                background: 'rgba(2,10,4,0.75)',
-                border: `1.5px solid rgba(34,197,94,0.28)`,
-                borderRadius: 10, padding: '16px 20px',
-                display: 'flex', alignItems: 'center', gap: 16,
-                backdropFilter: 'blur(6px)',
-              }}>
-                <span style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700, fontSize: '2rem',
-                  color: G.light, letterSpacing: '-0.02em',
-                  lineHeight: 1, flexShrink: 0, minWidth: 60,
-                }}>
-                  {s.value}
-                </span>
-                <span style={{
-                  fontSize: 11, color: G.textDim,
-                  textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: 500,
-                }}>
-                  {s.label}
-                </span>
-              </div>
-            ))}
-
+          {/* Bio card */}
+          <motion.div {...fadeUp(0.1)}>
             <div style={{
-              background: 'rgba(2,10,4,0.75)',
-              border: `1.5px solid rgba(34,197,94,0.28)`,
-              borderRadius: 10, padding: '18px 20px',
-              backdropFilter: 'blur(6px)',
+              background: 'rgba(12,23,35,0.72)',
+              border: `1px solid rgba(79,155,147,0.28)`,
+              borderRadius: 12,
+              padding: '28px 32px',
+              backdropFilter: 'blur(8px)',
+              boxShadow: '0 4px 32px rgba(0,0,0,0.25)',
             }}>
-              <p style={{ color: G.light, fontWeight: 600, fontSize: 11,
-                          textTransform: 'uppercase', letterSpacing: '0.07em',
-                          marginBottom: 10 }}>
-                🏆 Recognition
+              <div style={{ width: 32, height: 2, background: G.accent,
+                            borderRadius: 2, marginBottom: 16 }} />
+              <p style={{ color: G.text, fontSize: 16, lineHeight: 1.8, fontWeight: 400 }}>
+                {about.shortBio}
               </p>
-              {[
-                'Manager & Team Spotlight Award — Wells Fargo',
-                'IEEE Published Researcher',
-                'Azure Developer Associate Certified',
-              ].map((a, i) => (
-                <p key={i} style={{ color: G.textDim, fontSize: 12,
-                                    lineHeight: 1.6, marginBottom: i < 2 ? 6 : 0 }}>
-                  {a}
-                </p>
+            </div>
+          </motion.div>
+
+          {/* Highlights — clean list style */}
+          <motion.div {...fadeUp(0.2)}>
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0',
+            }}>
+              {about.highlights.map((h, i) => (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center', gap: 10,
+                  padding: '10px 0',
+                  borderBottom: `1px solid rgba(79,155,147,0.1)`,
+                  paddingRight: 16,
+                }}>
+                  <span style={{
+                    width: 4, height: 4, borderRadius: '50%',
+                    background: G.accent, flexShrink: 0,
+                  }} />
+                  <span style={{
+                    fontSize: 13, color: G.textDim, lineHeight: 1.4,
+                  }}>
+                    {h}
+                  </span>
+                </div>
               ))}
             </div>
           </motion.div>
@@ -180,14 +129,14 @@ export default function About() {
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0,
         height: 200, zIndex: 3, pointerEvents: 'none',
-        background: 'linear-gradient(to bottom, #020c04, rgba(2,12,4,0))',
+        background: 'linear-gradient(to bottom, #0C1723, rgba(12,23,35,0))',
       }} />
 
       {/* Bottom gradient — fades forest green into Experience's reddish dark */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: 240, zIndex: 3, pointerEvents: 'none',
-        background: 'linear-gradient(to top, #0f0400, rgba(2,12,4,0))',
+        background: 'linear-gradient(to top, #0D1F2E, rgba(12,23,35,0))',
       }} />
     </section>
   );

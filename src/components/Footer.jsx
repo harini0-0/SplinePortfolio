@@ -1,79 +1,133 @@
+import { useState } from 'react';
 import { profile } from '../data/resume';
+
+const navLinks = [
+  { label: 'About',      href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects',   href: '#projects' },
+  { label: 'Skills',     href: '#stack' },
+  { label: 'Chat',       href: '#chat' },
+  { label: 'Contact',    href: '#contact' },
+];
+
+const socialLinks = [
+  { label: 'GH', href: profile.github,            external: true },
+  { label: 'LI', href: profile.linkedin,           external: true },
+  { label: 'EM', href: `mailto:${profile.email}`,  external: false },
+];
+
+function SocialButton({ item }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href={item.href}
+      target={item.external ? '_blank' : undefined}
+      rel="noreferrer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        width: 32, height: 32,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        border: hovered
+          ? '1px solid rgba(79,155,147,0.3)'
+          : '1px solid rgba(255,255,255,0.1)',
+        borderRadius: 8,
+        color: hovered ? '#4F9B93' : 'rgba(224,237,244,0.26)',
+        background: hovered ? 'rgba(79,155,147,0.1)' : 'transparent',
+        fontSize: 11,
+        fontWeight: 600,
+        textDecoration: 'none',
+        transition: 'all 0.15s ease',
+        fontFamily: "'Space Grotesk', sans-serif",
+      }}
+    >
+      {item.label}
+    </a>
+  );
+}
+
+function NavLink({ link }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href={link.href}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontSize: 13,
+        color: hovered ? '#4F9B93' : 'rgba(224,237,244,0.26)',
+        textDecoration: 'none',
+        transition: 'color 0.15s ease',
+      }}
+    >
+      {link.label}
+    </a>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="relative py-12 px-6 overflow-hidden"
-            style={{ borderTop: '4px solid #ff6500' }}>
+    <footer
+      style={{
+        background: '#0C0016',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        padding: '40px 24px',
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
-      <div className="pointer-events-none absolute inset-0 scene-footer" />
-      <div className="pointer-events-none absolute inset-0 halftone opacity-25" />
-
-      <div className="relative z-10 max-w-6xl mx-auto">
-
-        {/* "THE END" comic book finale */}
-        <div className="text-center mb-10">
-          <div className="inline-block"
-               style={{
-                 border: '4px solid #ff6500',
-                 boxShadow: '6px 6px 0 #ff6500',
-                 background: '#120700',
-                 padding: '12px 40px',
-               }}>
-            <p className="font-comic text-4xl text-comic-orange tracking-comic"
-               style={{ textShadow: '3px 3px 0 #000' }}>
-              — THE END —
-            </p>
-            <p className="font-comic text-sm text-comic-yellow/60 tracking-comic mt-1">
-              BUT THE STORY CONTINUES...
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-
+        {/* Main row */}
+        <div
+          className="flex flex-wrap items-center justify-between"
+          style={{ gap: 24 }}
+        >
           {/* Left — branding */}
-          <div className="flex flex-col items-center sm:items-start gap-1">
-            <span className="font-comic text-2xl text-comic-orange tracking-comic"
-                  style={{ textShadow: '2px 2px 0 #000' }}>
+          <div>
+            <span style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              color: '#4F9B93',
+              display: 'block',
+              marginBottom: 4,
+            }}>
               {profile.name}
             </span>
-            <span className="text-xs text-[#f5ede0]/35 font-comic tracking-comic">
-              BUILT WITH REACT · SPLINE · CLAUDE API
+            <span style={{
+              fontSize: 11,
+              color: 'rgba(224,237,244,0.26)',
+            }}>
+              React · Spline · Claude API
             </span>
           </div>
 
           {/* Center — nav */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {['about', 'experience', 'projects', 'stack', 'chat', 'contact'].map(s => (
-              <a key={s} href={`#${s}`}
-                className="font-comic text-sm tracking-comic text-[#f5ede0]/40
-                           hover:text-comic-orange transition-colors uppercase">
-                {s}
-              </a>
+          <div className="hidden md:flex flex-wrap justify-center" style={{ gap: 20 }}>
+            {navLinks.map(link => (
+              <NavLink key={link.label} link={link} />
             ))}
           </div>
 
           {/* Right — social icons */}
-          <div className="flex items-center gap-2">
-            {[
-              { href: profile.github,          label: 'GH' },
-              { href: profile.linkedin,        label: 'LI' },
-              { href: `mailto:${profile.email}`, label: '✉' },
-            ].map(s => (
-              <a key={s.label} href={s.href}
-                target={s.label !== '✉' ? '_blank' : undefined}
-                rel="noreferrer"
-                className="btn-icon-comic font-comic text-sm"
-                style={{ width: 36, height: 36 }}>
-                {s.label}
-              </a>
+          <div className="flex items-center" style={{ gap: 8 }}>
+            {socialLinks.map(item => (
+              <SocialButton key={item.label} item={item} />
             ))}
           </div>
         </div>
 
-        <p className="text-center text-xs text-[#f5ede0]/20 font-comic tracking-comic mt-8">
-          © {new Date().getFullYear()} {profile.name}. ALL RIGHTS RESERVED.
+        {/* Bottom copyright */}
+        <p style={{
+          marginTop: 32,
+          textAlign: 'center',
+          fontSize: 11,
+          color: 'rgba(224,237,244,0.26)',
+        }}>
+          © {new Date().getFullYear()} {profile.name}. All rights reserved.
         </p>
+
       </div>
     </footer>
   );

@@ -56,7 +56,7 @@ export default function Hero() {
            style={{
              zIndex: 2,
              height: 380,
-             background: 'linear-gradient(to top, #020c04 0%, rgba(2,12,4,0) 100%)',
+             background: 'linear-gradient(to top, #0C1723 0%, rgba(2,12,4,0) 100%)',
            }} />
 
       {/* ── Main layout ── */}

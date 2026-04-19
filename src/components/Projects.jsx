@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { projects } from '../data/resume';
 
 const fadeUp = (delay = 0) => ({
@@ -9,185 +9,134 @@ const fadeUp = (delay = 0) => ({
   transition:  { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-const projectDetail = {
-  1: {
-    category: 'AI TOOLING',
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
-    contribution: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    metrics: [{ value: '90%', label: 'Automated' }, { value: '5min', label: 'Validation' }, { value: '3x', label: 'Faster' }],
-  },
-  2: {
-    category: 'PLATFORM ENG',
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.`,
-    contribution: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.`,
-    metrics: [{ value: '1.5h→5m', label: 'Time saved' }, { value: '20+', label: 'Deployments' }, { value: '99%', label: 'SLA' }],
-  },
-  3: {
-    category: 'NLP / ML',
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
-    contribution: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa.`,
-    metrics: [{ value: '80%', label: 'Friction ↓' }, { value: 'BERT', label: 'Model' }, { value: '10', label: 'Team size' }],
-  },
-  4: {
-    category: 'IEEE RESEARCH',
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.`,
-    contribution: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident deserunt.`,
-    metrics: [{ value: 'IEEE', label: 'Published' }, { value: 'C++', label: 'Core' }, { value: 'GPS', label: 'Real-time' }],
-  },
-  5: {
-    category: 'FULL-STACK AI',
-    overview: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.`,
-    contribution: `Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa officia.`,
-    metrics: [{ value: 'RAG', label: 'Architecture' }, { value: 'Claude', label: 'API' }, { value: 'Firebase', label: 'Backend' }],
-  },
-};
+const panelColors = ['#4F9B93', '#3E6F85', '#4F9B93', '#3E6F85', '#4F9B93'];
 
-// Alternating panel border colors for variety
-const panelColors = ['#ff6500', '#ffd600', '#ff6500', '#ffd600', '#ff6500'];
-
-function ProjectPanel({ project, index }) {
-  const [open, setOpen] = useState(false);
-  const detail = projectDetail[project.id] || {};
+function ProjectCard({ project, index }) {
   const borderColor = panelColors[index % panelColors.length];
 
   return (
     <motion.div {...fadeUp(index * 0.07)} className="flex flex-col">
+      <div style={{
+        background: '#0D1F2E',
+        border: `2px solid ${borderColor}55`,
+        boxShadow: `-2px -2px 8px rgba(79,155,147,0.05), 4px 4px 0 ${borderColor}, 6px 6px 16px rgba(0,0,0,0.28)`,
+        borderRadius: 10,
+        display: 'flex', flexDirection: 'column', flex: 1,
+      }}>
 
-      {/* Comic panel */}
-      <div
-        className="flex flex-col flex-1 cursor-pointer transition-transform duration-150"
-        style={{
-          background: '#120700',
-          border: `3px solid ${borderColor}`,
-          boxShadow: open
-            ? `8px 8px 0 ${borderColor}`
-            : `5px 5px 0 ${borderColor}`,
-          transform: open ? 'translate(-3px,-3px)' : undefined,
-          borderRadius: 4,
+        {/* Header */}
+        <div style={{
+          padding: '12px 18px',
+          borderBottom: `1px solid ${borderColor}30`,
+          background: `${borderColor}10`,
+          borderRadius: '8px 8px 0 0',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-
-        {/* Panel number + category header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b-2"
-             style={{ borderColor: `${borderColor}40`, background: `${borderColor}12` }}>
-          <div className="flex items-center gap-3">
-            <div className="panel-number" style={{ width: 36, height: 36, fontSize: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{
+              width: 28, height: 28, background: borderColor, color: '#000',
+              fontWeight: 700, fontSize: 13, borderRadius: 6,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
               {index + 1}
             </div>
-            <span className="font-comic tracking-comic text-sm"
-                  style={{ color: borderColor }}>
-              {detail.category || 'PROJECT'}
-            </span>
           </div>
-          <div className="flex gap-1.5">
-            {project.nda           && <span className="comic-tag text-[10px]" style={{ background: '#e63000' }}>NDA</span>}
-            {project.isPublication && <span className="comic-tag-yellow text-[10px]">IEEE</span>}
+          <div style={{ display: 'flex', gap: 6 }}>
+            {project.nda && (
+              <span style={{
+                fontSize: 9, fontWeight: 700, padding: '2px 8px', borderRadius: 3,
+                background: '#3E6F85', color: '#000', textTransform: 'uppercase', letterSpacing: '0.05em',
+              }}>NDA</span>
+            )}
+            {project.isPublication && (
+              <span style={{
+                fontSize: 9, fontWeight: 700, padding: '2px 8px', borderRadius: 3,
+                background: '#4F9B93', color: '#000', textTransform: 'uppercase', letterSpacing: '0.05em',
+              }}>IEEE</span>
+            )}
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-5 flex flex-col gap-3 flex-1">
-          <h3 className="font-comic text-xl tracking-comic text-comic-cream">
+        {/* Body */}
+        <div style={{ padding: '18px 18px 12px', flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <h3 style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 700, fontSize: '1.05rem',
+            color: '#E0EDF4', letterSpacing: '-0.01em',
+          }}>
             {project.name}
           </h3>
-          <p className="text-sm text-[#f5ede0]/65 leading-relaxed">
+          <p style={{ fontSize: 13, color: 'rgba(224,237,244,0.6)', lineHeight: 1.6 }}>
             {project.description}
           </p>
 
-          {/* Expandable details */}
-          <AnimatePresence initial={false}>
-            {open && (
-              <motion.div
-                key="detail"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden">
-
-                <div className="flex flex-col gap-4 pt-3 border-t-2 border-dashed"
-                     style={{ borderColor: `${borderColor}30` }}>
-
-                  <div>
-                    <p className="font-comic text-sm tracking-comic mb-1"
-                       style={{ color: borderColor }}>OVERVIEW</p>
-                    <p className="text-sm text-[#f5ede0]/60 leading-relaxed">{detail.overview}</p>
-                  </div>
-
-                  <div>
-                    <p className="font-comic text-sm tracking-comic mb-1"
-                       style={{ color: borderColor }}>MY CONTRIBUTION</p>
-                    <p className="text-sm text-[#f5ede0]/60 leading-relaxed">{detail.contribution}</p>
-                  </div>
-
-                  {detail.metrics && (
-                    <div>
-                      <p className="font-comic text-sm tracking-comic mb-2"
-                         style={{ color: borderColor }}>KEY IMPACT</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {detail.metrics.map(m => (
-                          <div key={m.label} className="text-center py-2"
-                               style={{ border: `2px solid ${borderColor}50`, borderRadius: 2 }}>
-                            <p className="font-comic text-base tracking-comic"
-                               style={{ color: borderColor }}>{m.value}</p>
-                            <p className="text-[10px] text-[#f5ede0]/45 mt-0.5">{m.label}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           {/* Stack tags */}
-          <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t-2 border-dashed"
-               style={{ borderColor: `${borderColor}25` }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 4 }}>
             {project.stack.map(s => (
-              <span key={s} className="text-[10px] font-semibold uppercase px-2 py-0.5"
-                    style={{ border: `1.5px solid ${borderColor}60`,
-                             color: `${borderColor}`, borderRadius: 2 }}>
+              <span key={s} style={{
+                fontSize: 10, fontWeight: 600, padding: '2px 8px',
+                border: `1.5px solid ${borderColor}50`,
+                color: borderColor, borderRadius: 4,
+                textTransform: 'uppercase', letterSpacing: '0.03em',
+              }}>
                 {s}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Footer — links + expand */}
-        <div className="px-5 pb-4 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            {project.nda ? (
-              <span className="text-xs text-[#f5ede0]/40 flex items-center gap-1.5">
-                🔒 Protected under NDA
-              </span>
-            ) : (
-              <>
-                {project.github && (
-                  <a href={project.github} target="_blank" rel="noreferrer"
-                     onClick={e => e.stopPropagation()}
-                     className="btn-comic-outline text-xs px-3 py-1"
-                     style={{ fontSize: 12 }}>
-                    GitHub
-                  </a>
-                )}
-                {project.live && project.live !== '#' && (
-                  <a href={project.live} target="_blank" rel="noreferrer"
-                     onClick={e => e.stopPropagation()}
-                     className="btn-comic text-xs px-3 py-1"
-                     style={{ fontSize: 12 }}>
-                    {project.isPublication ? 'IEEE' : 'Live'}
-                  </a>
-                )}
-              </>
-            )}
-          </div>
+        {/* Footer */}
+        <div style={{
+          padding: '12px 18px',
+          borderTop: `1px dashed ${borderColor}25`,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        }}>
+          {project.nda ? (
+            <span style={{ fontSize: 11, color: 'rgba(224,237,244,0.3)' }}>NDA — Discussable in detail</span>
+          ) : (
+            <div style={{ display: 'flex', gap: 8 }}>
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noreferrer"
+                   onClick={e => e.stopPropagation()}
+                   style={{
+                     fontSize: 11, fontWeight: 600, padding: '4px 12px',
+                     border: `2px solid ${borderColor}`, color: borderColor,
+                     borderRadius: 5, textDecoration: 'none',
+                     transition: 'all 0.15s',
+                   }}>
+                  GitHub
+                </a>
+              )}
+              {project.live && project.live !== '#' && (
+                <a href={project.live} target="_blank" rel="noreferrer"
+                   onClick={e => e.stopPropagation()}
+                   style={{
+                     fontSize: 11, fontWeight: 600, padding: '4px 12px',
+                     background: borderColor, color: '#000',
+                     borderRadius: 5, textDecoration: 'none',
+                   }}>
+                  {project.isPublication ? 'IEEE' : 'Live'}
+                </a>
+              )}
+            </div>
+          )}
 
-          <button
-            onClick={() => setOpen(o => !o)}
-            className="font-comic tracking-comic text-sm transition-colors"
-            style={{ color: borderColor }}>
-            {open ? '▲ LESS' : '▼ DETAILS'}
-          </button>
+          <Link
+            to={`/project/${project.id}`}
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 600, fontSize: 12,
+              color: borderColor, textDecoration: 'none',
+              display: 'flex', alignItems: 'center', gap: 4,
+              transition: 'gap 0.15s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.gap = '8px'}
+            onMouseLeave={e => e.currentTarget.style.gap = '4px'}>
+            View Project
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -196,10 +145,8 @@ function ProjectPanel({ project, index }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-24 px-6 overflow-hidden">
-
-      <div className="pointer-events-none absolute inset-0 scene-projects" />
-      <div className="pointer-events-none absolute inset-0 halftone opacity-20" />
+    <section id="projects" className="relative py-24 px-6 overflow-hidden"
+             style={{ background: '#00010bff' }}>
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
@@ -207,8 +154,11 @@ export default function Projects() {
         <motion.div {...fadeUp(0)} className="mb-14 flex items-center gap-5">
           <div className="panel-number">P</div>
           <div>
-            <h2 className="font-comic text-5xl text-comic-orange tracking-comic"
-                style={{ textShadow: '3px 3px 0 #000' }}>
+            <h2 style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              color: '#4F9B93', letterSpacing: '-0.02em', lineHeight: 1,
+            }}>
               THE PROJECTS
             </h2>
             <p className="section-subheading mt-1">
@@ -217,17 +167,18 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        {/* Comic panel grid */}
+        {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p, i) => (
-            <ProjectPanel key={p.id} project={p} index={i} />
+            <ProjectCard key={p.id} project={p} index={i} />
           ))}
         </div>
 
-        <motion.p className="text-xs text-center text-[#f5ede0]/35 mt-10 font-comic tracking-comic"
+        <motion.p className="text-xs text-center mt-10 font-comic tracking-comic"
+          style={{ color: 'rgba(224,237,244,0.35)' }}
           {...fadeUp(0.4)}>
           NDA projects discussable in detail — ask via the{' '}
-          <a href="#chat" className="text-comic-orange hover:underline">AI CHAT ↓</a>
+          <a href="#chat" style={{ color: '#4F9B93' }}>AI CHAT</a>
         </motion.p>
       </div>
     </section>
