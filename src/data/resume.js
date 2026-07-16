@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Harini Thirunavukkarasan',
-  tagline: 'Senior Software Engineer & MS CS Student at Northeastern',
+  tagline: 'Software Engineer & MS CS Student at Northeastern',
   subTagline: 'Building distributed systems, AI-powered tooling, and things that actually work in production.',
   location: 'Boston, Massachusetts',
   email: 'harinipri2001@gmail.com',
@@ -10,31 +10,17 @@ export const profile = {
   splineScene: 'https://prod.spline.design/DC5UbE5a9xhNKGFj/scene.splinecode',
 };
 
-export const stats = [
-  { label: 'Years exp.',     value: '2.5+' },
-  { label: 'Production deployments', value: '20+' },
-  { label: 'MS CS',          value: 'Northeastern' },
-];
-
 export const about = {
-  bio: `I'm a software engineer who spent 2.5 years at Wells Fargo designing and shipping 
-        production backend systems, CI/CD pipelines, and AI-powered developer tooling — 
-        the kind of work where reliability isn't optional. I refactored monolithic lending 
-        platforms into microservices, built a VS Code extension that surfaces business logic 
-        in-IDE using LangGraph and GitHub Copilot API, and kept production stable through 
-        20+ deployments with 99% SLA compliance. I'm now pursuing my MS in Computer Science 
-        at Northeastern University, deepening my foundation in software design, distributed 
-        systems, and applied ML. I pick up things on my own timeline — Flutter and Dart 
-        weren't part of any job requirement, I just wanted to understand a different paradigm 
-        and built with it until I did. That's how I approach gaps.`,
+  bio: `I'm a software engineer with 2.5 years at Wells Fargo shipping production backend systems, AI tooling, and CI/CD pipelines. Currently a Software Engineer at Proplr and Graduate TA for Algorithms at Northeastern, while pursuing my MS in Computer Science. I've built concurrent DNS resolvers, real-time deepfake detection systems, on-device privacy tools, and LLM pipelines — mostly in hackathons or on weekends. I pick up things on my own timeline; that's how I close gaps.`,
+  shortBio: `Software engineer with production experience at Wells Fargo and Proplr, currently pursuing MS CS at Northeastern — building at the intersection of distributed systems, AI tooling, and applied ML.`,
   highlights: [
+    'Software Engineer at Proplr — May 2026',
     '2.5 years at Wells Fargo — Senior SWE',
+    'Graduate TA for Algorithms — Northeastern',
     'MS CS — Northeastern University (Jan 2026)',
-    'Built & shipped Codon: Prodgard — AI VS Code extension',
-    'BERT-based NLP chatbot — reduced friction by 80%',
-    'IEEE published researcher',
+    'Best Technical Innovation — SheHack 2026',
+    'IEEE Published Researcher',
     'Azure Developer Associate certified',
-    'Flutter & Dart — self-taught, production apps',
     'Manager & Team Spotlight Award — Wells Fargo',
   ],
 };
@@ -42,80 +28,135 @@ export const about = {
 export const experience = [
   {
     id: 1,
+    role: 'Software Engineer',
+    company: 'Proplr',
+    duration: 'May 2026 – Present',
+    location: 'Dubai, UAE (Remote)',
+    bullets: [
+      'Refactored a Next.js + Supabase platform into a layered modular monolith, separating routes, services, repositories, and PII handling into predictable layers.',
+      'Closed 14 correctness and authorization defects including PII leaks, a signup foreign key failure, missing ownership checks, and non-idempotent Stripe webhooks.',
+      'Grew the test suite from 62 to 154 tests across 21 suites, including a route-level integration harness covering the full auth, rate limit, and PII regression path.',
+    ],
+    stack: ['Next.js', 'Supabase', 'TypeScript', 'PostgreSQL', 'Jest'],
+  },
+  {
+    id: 2,
+    role: 'Graduate Teaching Assistant — Algorithms',
+    company: 'Northeastern University',
+    duration: 'May 2026 – Present',
+    location: 'Boston, Massachusetts',
+    bullets: [
+      'Supporting students on data structures, algorithmic complexity, and problem solving through office hours, assignment guidance, and assessments.',
+    ],
+    stack: ['Algorithms', 'Data Structures', 'Complexity Analysis'],
+  },
+  {
+    id: 3,
     role: 'Senior Software Engineer',
     company: 'Wells Fargo',
     duration: 'July 2023 – December 2025',
     location: 'India',
     bullets: [
-      'Refactored monolithic lending services into API-based microservices in Java / Spring Boot, correcting customer-specific interest rate inconsistencies and reducing production incidents to fewer than 7 annually while maintaining 99% SLA compliance.',
-      'Owned end-to-end lifecycle of 20+ production deployments through ServiceNow-governed CI/CD pipelines — from design and code review through deployment and post-release validation — with zero-downtime release practices.',
-      'Diagnosed and resolved production incidents through distributed log analysis in Splunk, reducing mean time to resolution across consumer lending systems.',
-      'Increased automated test coverage to 90% using JaCoCo and PIT mutation testing; applied TDD and participated in regular code reviews to maintain high code quality standards.',
-      'Built Codon: Prodgard — an AI-powered VS Code chat extension using GitHub Copilot API and LangGraph state machines to automate production readiness assessments, code reviews, and release workflows.',
-      'Engineered a Developer Onboarding platform with Playwright UI automation and a Release Version Tool providing real-time visibility into environment/config drift — cutting release validation from 1.5 hours to under 5 minutes.',
+      'Designed and shipped production backend microservices in Java and Spring Boot for consumer lending, owning 20+ deployments end-to-end with 99% SLA compliance.',
+      'Built Codon: Prodgard — an AI VS Code extension using LangGraph and GitHub Copilot API that generates plain-language codebase reports on a single command.',
+      'Built a full-stack release dashboard (ReactJS, Spring Boot, MongoDB) consolidating Jenkins, GitHub, Jira, and Harness into a single view, cutting validation from 90 minutes to under 5.',
     ],
-    stack: ['Java', 'Spring Boot', 'LangGraph', 'GitHub Copilot API', 'Playwright', 'Splunk', 'ServiceNow', 'Jenkins', 'ReactJS'],
+    stack: ['Java', 'Spring Boot', 'LangGraph', 'GitHub Copilot API', 'ReactJS', 'MongoDB', 'Jenkins', 'Splunk'],
   },
   {
-    id: 2,
+    id: 4,
     role: 'Program Associate Intern',
     company: 'Wells Fargo',
     duration: 'May 2022 – July 2022',
     location: 'India',
     bullets: [
-      'Designed, trained, and deployed an NLP model (BERT-based sentiment analysis) end-to-end — from data preparation and model evaluation to production integration — reducing customer support friction by 80%.',
-      'Led a cross-functional team of 10 in an Agile environment; translated ambiguous business requirements into a working shipped solution with 100% on-time milestone delivery.',
-      'Built an LLM-powered web chatbot that identified customer sentiment and dynamically adapted conversational responses to enhance user engagement and reduce operational risk.',
+      'Built a two-model NLP chatbot for customer support: a BERT-based sentiment model for empathetic tone and a classification model to route conversations to the right bank segment, reducing friction by 80%.',
     ],
-    stack: ['Python', 'BERT', 'NLP', 'Sentiment Analysis', 'Agile'],
+    stack: ['Python', 'BERT', 'NLP', 'React', 'Firebase'],
   },
 ];
 
 export const projects = [
   {
     id: 1,
+    name: 'Project Helix',
+    tagline: 'Adaptive Telemetry-Driven DNS Resolver',
+    description: 'A concurrent UDP DNS resolver in Go with a hand-implemented TTL-aware LRU cache, full Prometheus/Grafana instrumentation, and an XGBoost model trained on historical telemetry to predict cache retention and prefetch high-demand records.',
+    stack: ['Go', 'Python', 'XGBoost', 'Prometheus', 'Grafana', 'Docker', 'Linux'],
+    github: null,
+    live: null,
+    nda: false,
+  },
+  {
+    id: 2,
+    name: 'SHEild',
+    tagline: 'Real-Time Deepfake Detection Platform',
+    description: 'A real-time deepfake detection system for non-technical users, using PyTorch for model inference, OpenCV for video frame processing, and WebRTC for live stream ingestion. Won Best Technical Innovation at SheHack 2026.',
+    stack: ['PyTorch', 'OpenCV', 'WebRTC', 'FastAPI', 'Docker', 'AWS'],
+    github: null,
+    live: null,
+    nda: false,
+    award: 'Best Technical Innovation — SheHack 2026',
+  },
+  {
+    id: 3,
+    name: 'Priceless',
+    tagline: 'On-Device Data Economy Transparency',
+    description: 'A Chrome MV3 extension that audits websites in real time and quantifies the economic value of user data — with zero data leaving the device. Custom PyTorch models compiled to ONNX and run via WebAssembly inside the service worker.',
+    stack: ['PyTorch', 'ONNX', 'WebAssembly', 'React', 'Tailwind', 'Claude API', 'Vite'],
+    github: null,
+    live: null,
+    nda: false,
+  },
+  {
+    id: 4,
     name: 'Codon: Prodgard',
-    description: 'AI-powered VS Code chat extension using GitHub Copilot API and LangGraph state machines to automate production readiness assessments, code reviews, and release workflows — surfacing business logic directly in the IDE.',
+    tagline: 'GenAI Code Explanation Tool',
+    description: 'A VS Code extension and LangGraph agent workflow that reads a codebase and generates plain-language implementation reports on a single command, eliminating recurring handoff meetings between engineers and business teams at Wells Fargo.',
     stack: ['TypeScript', 'LangGraph', 'GitHub Copilot API', 'VS Code API', 'GenAI'],
     github: null,
     live: null,
     nda: true,
   },
   {
-    id: 2,
-    name: 'Release Version Tool',
-    description: 'Full-stack distributed system (ReactJS + Spring Boot + Java 17) giving L3 Tech business leaders real-time visibility into deployment state, environment drift, and config discrepancies across live environments. Reduced release validation from 1.5 hours to under 5 minutes.',
-    stack: ['ReactJS', 'Spring Boot', 'Java 17', 'Jenkins', 'Harness', 'UCD', 'Jira API', 'JUnit', 'Karate'],
+    id: 5,
+    name: 'LLM Log Triage Pipeline',
+    tagline: 'Grounded Anomaly Detection',
+    description: 'A Python pipeline that ingests raw multi-format production logs and routes noise-reduced chunks through Google Gemma via the Gemini API, with a grounding layer requiring every cited log line to appear verbatim in the source and best-of-N self-consistency voting to reject hallucinated detections.',
+    stack: ['Python', 'Gemini API', 'Gemma', 'Prometheus', 'Slack Webhooks'],
     github: null,
     live: null,
-    nda: true,
+    nda: false,
   },
   {
-    id: 3,
-    name: 'BERT Sentiment Chatbot',
-    description: 'LLM-powered customer support chatbot using BERT-based sentiment analysis to detect emotional tone and dynamically adapt responses — reducing customer–support friction by 80% in production.',
-    stack: ['Python', 'BERT', 'NLP', 'Transformer Models', 'REST APIs'],
-    github: null,
-    live: null,
-    nda: true,
+    id: 6,
+    name: 'RAG Powered AI Portfolio',
+    tagline: 'Conversational AI on Personal Data',
+    description: 'A RAG-powered conversational AI trained on personal work history using LangGraph, vector embeddings, and the Claude API — handling retrieval, context ranking, and response generation as backend services in Python and TypeScript.',
+    stack: ['React', 'Firebase', 'Claude API', 'OpenAI Embeddings', 'RAG', 'Firestore', 'TypeScript'],
+    github: 'https://github.com/harini0-0',
+    live: '#',
+    nda: false,
   },
   {
-    id: 4,
+    id: 7,
     name: 'Smart Traffic Management System',
-    description: 'Research project published in IEEE Xplore — dynamic urban traffic flow optimization using GPS-based vehicle crowd tracking and multithreaded processing with inter-process communication.',
-    stack: ['Multithreading', 'IPC', 'GPS Systems', 'C++'],
+    tagline: 'IEEE Published Research',
+    description: 'Research on dynamic urban traffic flow optimization using GPS-based vehicle crowd tracking and multithreaded C++ processing with inter-process communication. Published in IEEE Xplore.',
+    stack: ['C++', 'Multithreading', 'IPC', 'GPS Systems'],
     github: null,
     live: 'https://ieeexplore.ieee.org',
     nda: false,
     isPublication: true,
   },
   {
-    id: 5,
-    name: 'AI Portfolio Chatbot',
-    description: 'RAG-powered chatbot trained on my resume and GitHub activity. Uses OpenAI embeddings + Firestore vector search to retrieve relevant context, then streams responses via Claude API through a Firebase Cloud Function.',
-    stack: ['React', 'Firebase', 'Claude API', 'OpenAI Embeddings', 'RAG', 'Firestore'],
-    github: 'https://github.com/harini0-0',
-    live: '#',
+    id: 8,
+    name: 'Flutter Mobile Applications',
+    tagline: 'Money Manager & Music Player',
+    description: 'Two Flutter apps: a money management app with custom categories, transaction tracking, and monthly dashboards using Provider state management and Hive; and a music player with a neumorphic UI and full playback controls.',
+    stack: ['Flutter', 'Dart', 'Provider', 'Flutter Hive'],
+    github: null,
+    live: null,
     nda: false,
   },
 ];
@@ -123,31 +164,35 @@ export const projects = [
 export const techStack = [
   {
     category: 'Languages',
-    skills: ['Java', 'Python', 'TypeScript', 'JavaScript', 'C++', 'Golang', 'Dart', 'SQL'],
+    skills: ['C++', 'Python', 'Java', 'Go', 'JavaScript', 'TypeScript', 'Dart', 'SQL'],
   },
   {
-    category: 'Backend & Frameworks',
-    skills: ['Spring Boot', 'Node.js', 'ReactJS', 'Flutter', 'REST APIs', 'Microservices', 'AngularJS'],
+    category: 'Web & Full Stack',
+    skills: ['React', 'Next.js', 'Node.js', 'Spring Boot', 'FastAPI', 'REST APIs', 'Tailwind CSS', 'Vite', 'Chrome Extensions (MV3)'],
   },
   {
-    category: 'DevOps & CI/CD',
-    skills: ['Jenkins', 'GitHub Actions', 'Harness', 'Docker', 'UCD', 'SonarQube', 'Splunk', 'ServiceNow'],
+    category: 'AI, ML & Data',
+    skills: ['PyTorch', 'TensorFlow', 'OpenCV', 'BERT / NLP', 'LangGraph', 'RAG', 'Vector Embeddings', 'ONNX', 'XGBoost', 'Claude API', 'Gemini API', 'GitHub Copilot API'],
+  },
+  {
+    category: 'Systems & Core CS',
+    skills: ['Distributed Systems', 'Microservices', 'Concurrency', 'Multithreading', 'IPC', 'Low Latency Engineering', 'Caching', 'Linux', 'WebAssembly'],
+  },
+  {
+    category: 'Infrastructure & DevOps',
+    skills: ['Docker', 'Prometheus', 'Grafana', 'AWS', 'CI/CD', 'Jenkins', 'GitHub Actions', 'Splunk', 'SonarQube'],
   },
   {
     category: 'Databases',
-    skills: ['MySQL', 'MongoDB', 'Firebase', 'Hive', 'SQL'],
-  },
-  {
-    category: 'AI & ML',
-    skills: ['BERT', 'NLP', 'LangGraph', 'GitHub Copilot API', 'RAG', 'Claude API', 'OpenAI API', 'Sentiment Analysis'],
+    skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Firebase', 'Supabase', 'DynamoDB', 'SQLite'],
   },
   {
     category: 'Testing & Quality',
-    skills: ['JUnit', 'Karate (AFT)', 'JaCoCo', 'PIT Mutation Testing', 'Playwright', 'TDD'],
+    skills: ['Jest', 'JUnit', 'Karate', 'Playwright', 'TDD', 'JaCoCo', 'PIT Mutation Testing'],
   },
   {
-    category: 'Certifications',
-    skills: ['Azure Developer Associate', 'Azure AI Fundamentals', 'Google Digital Leader'],
+    category: 'Mobile & Certifications',
+    skills: ['Flutter', 'Dart', 'Provider', 'Azure Developer Associate', 'Azure AI Fundamentals', 'Google Digital Leader'],
   },
 ];
 
@@ -160,6 +205,8 @@ export const publications = [
 ];
 
 export const awards = [
+  'Best Technical Innovation — SheHack 2026 (SHEild)',
+  'SharkHack 2026 Participant — Priceless (Off Grid Track)',
   'Manager Spotlight Award — Wells Fargo',
   'Team Spotlight Award — Wells Fargo',
 ];
@@ -171,7 +218,8 @@ export const education = [
     school: 'Northeastern University',
     location: 'Boston, Massachusetts',
     duration: 'Jan 2026 – May 2028',
-    courses: ['Programming Design Paradigm', 'Database Management'],
+    gpa: '3.67',
+    courses: ['Programming Design Paradigms', 'Database Management', 'Algorithms'],
   },
   {
     id: 2,
@@ -181,4 +229,10 @@ export const education = [
     duration: 'July 2019 – May 2023',
     courses: ['Data Structures & Algorithms', 'Computer Networking', 'Object Oriented Programming', 'Operating Systems', 'HCI'],
   },
+];
+
+export const stats = [
+  { label: 'Years exp.',            value: '2.5+' },
+  { label: 'Production deployments', value: '20+' },
+  { label: 'MS CS',                 value: 'Northeastern' },
 ];
