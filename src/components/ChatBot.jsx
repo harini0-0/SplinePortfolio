@@ -9,9 +9,15 @@ const MOCK = `Hi! I'm Harini's AI. I can answer questions about her professional
 const SUGGESTED = ['Tell me about Codon: Prodgard','What did you build at Wells Fargo?','What is your MS focused on?','Walk me through the Release Version Tool'];
 
 async function getResponse(q) {
-  const url = import.meta.env.VITE_CHAT_API_URL;
-  if (url) { const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})}); return (await r.json()).answer; }
-  await new Promise(r=>setTimeout(r,1500)); return MOCK;
+  // Same-origin relative path — works automatically once deployed on Vercel,
+  // since the /api/chat function ships in the same deployment as this frontend.
+  // Override with VITE_CHAT_API_URL only if the backend lives on a different domain.
+  const url = import.meta.env.VITE_CHAT_API_URL || '/api/chat';
+  if (import.meta.env.DEV && !import.meta.env.VITE_CHAT_API_URL) {
+    await new Promise(r=>setTimeout(r,1500)); return MOCK;
+  }
+  const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});
+  return (await r.json()).answer;
 }
 
 function Chip({ label, onClick }) {
