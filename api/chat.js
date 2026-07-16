@@ -10,9 +10,21 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
+// Gemini occasionally returns 503 "high demand" — transient, not a real failure.
+// Retry a couple times with a short backoff before giving up.
+async function fetchWithRetry(url, options, retries = 2) {
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(url, options);
+    if (res.ok) return res;
+    const retryable = res.status === 503 || res.status === 429;
+    if (!retryable || attempt >= retries) return res;
+    await new Promise(r => setTimeout(r, 500 * (attempt + 1)));
+  }
+}
+
 async function embedQuestion(text) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=${GEMINI_API_KEY}`;
-  const res = await fetch(url, {
+  const res = await fetchWithRetry(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -47,13 +59,14 @@ Rules:
 - If the context doesn't contain the answer, say you don't have that information and suggest they ask Harini directly.
 - Speak about Harini in the third person ("she built...", "her experience includes...").
 - Be conversational and concise, not a dry list. Write like a knowledgeable colleague, not a search engine.
+
 Context:
 ${context}
 
 Question: ${question}`;
 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
-  const res = await fetch(url, {
+  const res = await fetchWithRetry(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
