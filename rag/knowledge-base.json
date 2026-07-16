@@ -1,0 +1,107 @@
+[
+  {
+    "id": "bio-summary",
+    "category": "bio",
+    "text": "Harini Thirunavukkarasan is a software engineer with experience building backend systems and internal tools at Wells Fargo. She enjoys working on problems that require thoughtful consideration of correctness, reliability, and system design. Her foundation in data structures, databases, and distributed systems enables her to build applications that are both practical and well-structured. She is currently expanding her expertise in machine learning and LLM-powered systems to develop intelligent, user-focused products. She is based in Boston, Massachusetts, and is currently pursuing an MS in Computer Science at Northeastern University."
+  },
+  {
+    "id": "languages-spoken",
+    "category": "personal",
+    "text": "Harini speaks English (professional working proficiency), Tamil (native/bilingual proficiency), and Hindi (limited working proficiency)."
+  },
+  {
+    "id": "recommendation-bhavesh",
+    "category": "recommendation",
+    "text": "Bhavesh Gupta, a Software Engineer at Google who worked alongside Harini at Wells Fargo, wrote: \"I had the pleasure of working alongside Harini at Wells Fargo. She is a brilliant engineer who consistently delivers high-quality code and thrives in complex problem-solving environments. Her inquisitive nature is one of her greatest strengths; she proactively questions architecture and best practices beforehand, saving the team from trouble in the middle of execution. Once aligned, she excels at breaking down complex goals into manageable, actionable components. Beyond her technical foresight, she is an incredibly supportive teammate who makes everyone around her better.\""
+  },
+  {
+    "id": "exp-proplr",
+    "category": "experience",
+    "text": "Software Engineer at Proplr, Dubai UAE (Remote), starting May 2026. Refactored an organically grown Next.js and Supabase platform into a layered modular monolith, separating routes, services, repositories, validation, and response shaping. Closed 14 correctness and authorization defects (4 critical), including PII leaks in feed and member queries, a signup foreign key failure on obfuscated existing users, missing ownership and membership checks, and non-idempotent Stripe webhooks that double-ran billing side effects. Diagnosed a subtle signup bug end to end and fixed it in two layers: a client-side classifier that reroutes to sign-in, and a server-side check that verifies the user exists before any write. Built a DB-backed sliding window rate limiter, an audit log for sensitive admin actions, and DTO allowlists that strip email and subscription fields from peer-facing responses at the source. Grew the test suite from 62 to 154 tests across 21 suites, including a route-level integration harness that drives the real handlers through the full rate limit, validation, auth, service, and DTO path and asserts against PII leak regressions. Tech stack: Next.js, Supabase, TypeScript, PostgreSQL, Jest, Stripe."
+  },
+  {
+    "id": "exp-ta-northeastern",
+    "category": "experience",
+    "text": "Graduate Teaching Assistant for Algorithms at Northeastern University (Khoury College of Computer Sciences), Boston MA, starting May 2026. Supports students on data structures, algorithmic complexity, and problem solving through office hours, assignment guidance, and assessment."
+  },
+  {
+    "id": "exp-wells-fargo-senior",
+    "category": "experience",
+    "text": "Senior Software Engineer at Wells Fargo (formerly Software Engineer, then Program Associate), July 2023 to December 2025, based in India (Hyderabad and Bengaluru). Designed and developed production backend services in Java and Spring Boot using a microservices architecture for consumer lending fintech systems, owning 20+ production deployments end to end while maintaining 99% SLA compliance. Built Codon: Prodgard, an AI agent workflow using LangGraph state machines and the GitHub Copilot API that reads a codebase and generates plain-language reports on a single command, eliminating recurring handoff meetings between engineers and business teams. Built a full-stack data aggregation tool (ReactJS, Spring Boot, MongoDB) that consolidated Jenkins, GitHub, Jira, and Harness REST APIs into a single view, cutting manual release validation from 90 minutes to under 5. Diagnosed and resolved production failures through distributed log analysis in Splunk across 5+ production environments, reducing incidents to fewer than 7 annually. Wrote automated test suites using JUnit and Karate, increasing coverage to 90%. Launched and maintained 3 internal developer productivity tools, including an onboarding platform with Playwright UI automation. Received the Manager Spotlight Award (Dec 2023) and Team Spotlight Award (Mar 2024) for outstanding engineering performance."
+  },
+  {
+    "id": "exp-wells-fargo-intern",
+    "category": "experience",
+    "text": "Program Associate Intern at Wells Fargo, May 2022 to July 2022, India. Built a two-model NLP chatbot for customer support: a BERT-based sentiment model for empathetic tone, plus a separate classification model to route conversations to the correct bank segment, reducing customer friction by 80%. Owned the React frontend and Firebase database integration. Collaborated in a 10-person Agile team, delivering every milestone on schedule."
+  },
+  {
+    "id": "project-helix",
+    "category": "project",
+    "text": "Project Helix — Adaptive Telemetry-Driven DNS Resolver. Built a concurrent UDP DNS resolver in Go on Linux with a bounded worker pool for capped, predictable concurrency and a hand-implemented thread-safe TTL-aware LRU cache (hash map plus doubly linked list, O(1) lookup and eviction, no external cache library), verified race-free with the Go race detector. Instrumented every subsystem with Prometheus counters, gauges, and latency histograms (p50, p95, p99), surfaced through a Dockerized Prometheus and Grafana stack. Engineered features from historical telemetry (access frequency, recency, time of day, burst score) and trained an XGBoost model to predict cache retention and prefetch high-demand records, benchmarked against Random Forest and Logistic Regression baselines with cross-validation. Built an offline retraining and promotion pipeline that promotes a candidate model only on held-out improvement, with a versioned model registry for rollback and a deterministic TTL-aware LRU fallback so correctness never depends on the model. Tech: Go, Python, XGBoost, Prometheus, Grafana, Docker. GitHub: github.com/harini0-0/Adaptive-DNS-Resolver-with-Self-Optimizing-Cache."
+  },
+  {
+    "id": "project-sheild",
+    "category": "project",
+    "text": "SHEild — Real-Time Deepfake Detection Platform. Built around a real gap: deepfake detection existed in research but was inaccessible to the people who needed it most, particularly elderly users, women, and children targeted by AI-generated scams. Designed to be as automatic as a spam filter, with high-confidence outputs non-technical users could act on. Engineered the full ML inference pipeline using PyTorch for model training and evaluation, OpenCV for real-time video frame processing, and WebRTC for live stream ingestion, making deliberate latency-versus-accuracy tradeoffs for real-time performance. Designed scalable backend infrastructure using FastAPI supporting high-throughput parallel inference, with both web-based and command-line interfaces. Won Best Technical Innovation at SheHack 2026."
+  },
+  {
+    "id": "project-priceless",
+    "category": "project",
+    "text": "Priceless (PRICELE$$) — On-Device Data Economy Transparency. A Chrome MV3 extension that audits websites in real time and quantifies the economic value of user data — putting a dollar figure on data extraction as you browse, with zero data leaving the device. Built for SharkHack 2026, Off-Grid Track. Trained two custom PyTorch models: a regression network (17 features, IAB CPM benchmarks, WhoTracksMe data) for per-tracker dollar valuation with confidence intervals, and a multi-label classifier trained on 1.27 million URL samples for audience segment reconstruction. Both exported to ONNX and run entirely in the service worker via WebAssembly. Integrated the Claude API for privacy policy analysis, returning structured JSON with plain-English summaries, contradiction detection, dark pattern scoring, and policy change alerts using SHA-256 hashing via the Web Crypto API. Solved a non-trivial engineering challenge: Chrome MV3's Content Security Policy blocks WebAssembly by default, requiring wasm-unsafe-eval configuration and single-threaded ONNX Runtime Web execution. Also handled a 30x class imbalance using weighted BCE loss and per-class confidence thresholds."
+  },
+  {
+    "id": "project-codon-prodgard",
+    "category": "project",
+    "text": "Codon: Prodgard — GenAI Code Explanation Tool, built at Wells Fargo. A VS Code extension and agent workflow that reads a codebase and generates plain-language implementation reports on a single command, using LangGraph state machines to orchestrate the generation steps and the GitHub Copilot API for contextual code understanding. Removed a recurring organizational bottleneck where engineers and managers were pulled into repeated meetings to explain code to business teams who could not read it. This project is under NDA at Wells Fargo; architecture and engineering decisions are discussable in a live conversation."
+  },
+  {
+    "id": "project-log-triage",
+    "category": "project",
+    "text": "LLM Log Triage Pipeline — Grounded Anomaly Detection. Built the LLM-facing half of a Python pipeline (across a 4-person team) that ingests raw multi-format production logs (Linux syslog, HDFS, Apache, OpenSSH) and routes noise-reduced chunks through Google's Gemma model via the Gemini API to emit schema-validated JSON anomaly reports. Engineered a grounding-based anti-hallucination layer requiring every model-cited log line to appear verbatim in the source chunk, combined with best-of-N self-consistency voting to reject fabricated and one-off detections. Wrote a defensive JSON parser that recovers clean anomaly arrays from chain-of-thought output, handling malformed input, lowercase severities, trailing commas, and explicit empty-result sentinels without crashing. Built the severity scoring engine (0-100 scale with critical service bumps for sshd, kernel, and namenode events) and a webhook dispatcher (Slack, PagerDuty, generic) with queue-file fallback on delivery failure. Built a baseline-versus-best-of-N comparison harness quantifying hallucination rate reduction at inference."
+  },
+  {
+    "id": "project-rag-portfolio",
+    "category": "project",
+    "text": "RAG-Powered AI Portfolio — a RAG-powered conversational AI system using LangGraph, vector embeddings, and LLM integration, trained on personal work history, writing style, and reasoning patterns. Handles retrieval, context ranking, and response generation as production-quality backend services in Python and TypeScript. Designed the system to feel like talking to a person rather than a search engine, making deliberate tradeoffs between retrieval precision and conversational tone. This is the same chatbot the user is currently talking to — it runs on Supabase (pgvector) for vector storage and similarity search, Google Gemini for embeddings, and the Claude API for response generation."
+  },
+  {
+    "id": "project-flutter-apps",
+    "category": "project",
+    "text": "Flutter Mobile Applications. Built a Money Management / Smart Wallet app with full UI/UX ownership, custom categories, transaction tracking, and monthly expense dashboards, using Provider for state management and Flutter Hive for local storage (github.com/harini0-0/Money-Management-App-Flutter). Also designed and shipped a Music Player app with a neumorphic UI/UX design system, full playback controls, and a dynamic song list (github.com/harini0-0/music_player_ui) — an early, deliberate study in soft-shadow depth and tactile interface design."
+  },
+  {
+    "id": "project-ieee-traffic",
+    "category": "project",
+    "text": "Smart Traffic Management System — IEEE Xplore published research (Nov 2021), available at ieeexplore.ieee.org/document/9579506. Original research on dynamic urban traffic flow optimization: implemented a Smart Traffic Light System Simulation and Central Traffic System Simulation using multithreading and inter-process communication in C++, Python, Pygame, and Flask, using GPS-based vehicle crowd tracking to reduce congestion. The paper addresses shortcomings of static traffic signal controllers and the lack of mechanisms to prevent congestion buildup on already-crowded roads."
+  },
+  {
+    "id": "project-academic-early",
+    "category": "project",
+    "text": "Earlier academic projects during undergrad at NITK: (1) SmartCane for Blind — implements object detection using YOLOv3 in Python and provides output as audio, for assistive navigation. (2) Computer Networking on 5G — implemented device-to-device (D2D) communication using NS3 network simulator on 5G. (3) Rich QR code with three-layer info using Hamming code — studied the construction and design of rich QR codes, building a mechanism using Hamming code and error correction to protect embedded information. (4) Movie Booking Database System — a movie booking management system with customer and admin login, using MySQL with triggers, stored procedures, functions, and views. (5) Hexapedal Bot — built a six-legged robot and studied locomotion and stability on multiple surfaces using ROS and Python, with research on swarm behavior."
+  },
+  {
+    "id": "education",
+    "category": "education",
+    "text": "Harini is pursuing a Master of Science in Computer Science at Northeastern University, Boston, Massachusetts (Jan 2026 - May 2028), with a CGPA of 3.67. Graduate coursework includes Programming Design Paradigms, Database Management, and advanced algorithms and systems. She holds a Bachelor of Technology in Information Technology from the National Institute of Technology, Karnataka (July 2019 - May 2023), with coursework in Data Structures and Algorithms, Operating Systems, Computer Networking, Object Oriented Programming, and Human Computer Interaction. She attended Indian High School, Dubai, UAE (Sep 2017 - Apr 2019), where she was active in chess and computer science."
+  },
+  {
+    "id": "leadership-nitk",
+    "category": "leadership",
+    "text": "During undergrad at NITK, Harini served as Placement Coordinator Head for the IT Department (May 2021 - Jun 2023) — a role that tested her leadership and management skills and taught her to work with different types of people, bringing out the best in every situation. She was also an Executive Member of ISTE NITK (Oct 2021 - Apr 2023) and Events Coordinator for the Flying and Robotics Club at NITK (May 2021 - Jun 2022). She was also a Cadet in the National Cadet Corps - India (Sep 2019 - Apr 2020)."
+  },
+  {
+    "id": "certifications-full",
+    "category": "certifications",
+    "text": "Harini holds certifications including: Microsoft Certified Azure Developer Associate (Jun 2024), Microsoft Certified Azure AI Fundamentals (Apr 2025), Microsoft Certified Azure Fundamentals (May 2024), Google Cloud Digital Leader (Mar 2024). She has also completed Anthropic coursework: Claude Code in Action, Building with the Claude API, Introduction to Model Context Protocol, and Introduction to Agent Skills (2026). Earlier coursework includes Python Data Structures, Image Processing with Python, Video Basics with OpenCV and Python, Cybersecurity and the Internet of Things (Coursera), and Flutter Development Bootcamp, Web Development Bootcamp, and jQuery fundamentals (Udemy)."
+  },
+  {
+    "id": "awards",
+    "category": "awards",
+    "text": "Awards and recognitions: Best Technical Innovation at SheHack 2026 for SHEild, a real-time deepfake detection platform. SharkHack 2026 Participant for Priceless, an on-device data economy transparency tool (Off Grid Track). Manager Spotlight Award, Wells Fargo (Dec 2023). Team Spotlight Award, Wells Fargo (Mar 2024). IEEE Xplore Published Researcher for Smart Traffic Management System Using Multithreading and Inter-Process Communication."
+  },
+  {
+    "id": "skills-overview",
+    "category": "skills",
+    "text": "Core technical skills: Languages — C++, Python, Java, Go, JavaScript, TypeScript, Dart, SQL. Web and Full Stack — React, Next.js, Node.js, Spring Boot, FastAPI, REST APIs, Tailwind CSS, Chrome Extensions (MV3). AI, ML and Data — PyTorch, TensorFlow, OpenCV, NLP (BERT), LangGraph, RAG architecture, vector embeddings, XGBoost, ONNX Runtime, WebAssembly, Claude API, Gemini API, GitHub Copilot API. Systems and Core CS — distributed systems, microservices, concurrency, multithreading, inter-process communication, low-latency engineering, Linux. Infrastructure and DevOps — Docker, Prometheus, Grafana, AWS, CI/CD, Jenkins, GitHub Actions, Splunk. Databases — PostgreSQL, MongoDB, MySQL, Firebase, Supabase, DynamoDB. Testing — Jest, JUnit, Karate, Playwright, TDD."
+  }
+]

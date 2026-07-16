@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Personal data exports — never commit (contains private messages, connections, phone/email)
+Basic_LinkedInDataExport*/
+*LinkedInDataExport*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

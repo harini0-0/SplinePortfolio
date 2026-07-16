@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'comic-bg':     '#00010bff',
+        'comic-bg':     '#040D12',
         'comic-panel':  '#0D1F2E',
         'comic-deep':   '#0A1520',
         'comic-orange': '#4F9B93',

@@ -18,7 +18,7 @@ const fadeUp = (delay = 0) => ({
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 px-6 overflow-hidden">
+    <section id="about" className="relative py-28 px-6 overflow-hidden" style={{ marginTop: -1 }}>
 
       {/* ── Forest background image — exactly like the reference ── */}
       <img
@@ -91,7 +91,7 @@ export default function About() {
             }}>
               <div style={{ width: 32, height: 2, background: G.accent,
                             borderRadius: 2, marginBottom: 16 }} />
-              <p style={{ color: G.text, fontSize: 16, lineHeight: 1.8, fontWeight: 400 }}>
+              <p style={{ color: G.text, fontSize: 17, lineHeight: 1.8, fontWeight: 400 }}>
                 {about.shortBio}
               </p>
             </div>
@@ -114,7 +114,7 @@ export default function About() {
                     background: G.accent, flexShrink: 0,
                   }} />
                   <span style={{
-                    fontSize: 13, color: G.textDim, lineHeight: 1.4,
+                    fontSize: 14.5, color: G.textDim, lineHeight: 1.5,
                   }}>
                     {h}
                   </span>
@@ -128,8 +128,8 @@ export default function About() {
       {/* Top gradient — continues Hero's green fade seamlessly */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0,
-        height: 200, zIndex: 3, pointerEvents: 'none',
-        background: 'linear-gradient(to bottom, #0C1723, rgba(12,23,35,0))',
+        height: 280, zIndex: 3, pointerEvents: 'none',
+        background: 'linear-gradient(to bottom, #0C1723 0%, rgba(12,23,35,0.9) 18%, rgba(12,23,35,0.55) 45%, rgba(12,23,35,0.2) 72%, rgba(12,23,35,0) 100%)',
       }} />
 
       {/* Bottom gradient — fades forest green into Experience's reddish dark */}

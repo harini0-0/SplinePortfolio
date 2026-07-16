@@ -55,8 +55,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute bottom-0 left-0 right-0"
            style={{
              zIndex: 2,
-             height: 380,
-             background: 'linear-gradient(to top, #0C1723 0%, rgba(2,12,4,0) 100%)',
+             height: 440,
+             background: 'linear-gradient(to top, #0C1723 0%, rgba(12,23,35,0.9) 18%, rgba(12,23,35,0.55) 45%, rgba(12,23,35,0.2) 72%, rgba(12,23,35,0) 100%)',
            }} />
 
       {/* ── Main layout ── */}
