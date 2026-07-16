@@ -9,9 +9,15 @@ const MOCK = `Hi! I'm Harini's AI. I can answer questions about her professional
 const SUGGESTED = ['Tell me about Codon: Prodgard','What did you build at Wells Fargo?','What is your MS focused on?','Walk me through the Release Version Tool'];
 
 async function getResponse(q) {
-  const url = import.meta.env.VITE_CHAT_API_URL;
-  if (url) { const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})}); return (await r.json()).answer; }
-  await new Promise(r=>setTimeout(r,1500)); return MOCK;
+  // Same-origin relative path — works automatically once deployed on Vercel,
+  // since the /api/chat function ships in the same deployment as this frontend.
+  // Override with VITE_CHAT_API_URL only if the backend lives on a different domain.
+  const url = import.meta.env.VITE_CHAT_API_URL || '/api/chat';
+  if (import.meta.env.DEV && !import.meta.env.VITE_CHAT_API_URL) {
+    await new Promise(r=>setTimeout(r,1500)); return MOCK;
+  }
+  const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});
+  return (await r.json()).answer;
 }
 
 function Chip({ label, onClick }) {
@@ -25,8 +31,11 @@ function Chip({ label, onClick }) {
 export default function ChatBot() {
   const [messages,setMessages] = useState([{role:'assistant',content:`Hey! I'm Harini's AI. Ask me anything about her background, projects, or experience — or pick a suggestion below.`}]);
   const [input,setInput] = useState(''); const [loading,setLoading] = useState(false); const [focused,setFocused] = useState(false);
-  const bottomRef = useRef(null);
-  useEffect(()=>{ bottomRef.current?.scrollIntoView({behavior:'smooth'}); },[messages,loading]);
+  const listRef = useRef(null);
+  useEffect(()=>{
+    const el = listRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+  },[messages,loading]);
 
   async function send(text) {
     const q=(text||input).trim(); if(!q||loading) return;
@@ -57,7 +66,7 @@ export default function ChatBot() {
             <span style={{fontSize:13,color:DIM,fontWeight:500}}>Harini's AI — Active</span>
           </div>
 
-          <div style={{height:400,overflowY:'auto',padding:'20px',display:'flex',flexDirection:'column',gap:16}}>
+          <div ref={listRef} style={{height:400,overflowY:'auto',padding:'20px',display:'flex',flexDirection:'column',gap:16}}>
             {messages.map((m,i)=>(
               <div key={i} style={{display:'flex',alignItems:'flex-end',gap:10,justifyContent:m.role==='user'?'flex-end':'flex-start'}}>
                 {m.role==='assistant' && <div style={aiAvatar}>AI</div>}
@@ -79,7 +88,6 @@ export default function ChatBot() {
                 </motion.div>
               )}
             </AnimatePresence>
-            <div ref={bottomRef} />
           </div>
 
           {messages.length<=1 && (

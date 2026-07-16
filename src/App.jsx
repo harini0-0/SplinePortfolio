@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar          from './components/Navbar';
 import Hero            from './components/Hero';
 import About           from './components/About';
@@ -10,6 +10,12 @@ import ChatBot         from './components/ChatBot';
 import Contact         from './components/Contact';
 import Footer          from './components/Footer';
 import ProjectDetail   from './pages/ProjectDetail';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
 
 function Portfolio() {
   useEffect(() => {
@@ -33,9 +39,12 @@ function Portfolio() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Portfolio />} />
-      <Route path="/project/:id" element={<ProjectDetail />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
+      </Routes>
+    </>
   );
 }
